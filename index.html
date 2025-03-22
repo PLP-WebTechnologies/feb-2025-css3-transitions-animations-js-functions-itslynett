@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS3 Animations & Local Storage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        .btn {
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            margin: 20px auto;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <h2>CSS3 Transitions, Animations & Local Storage</h2>
+    <button class="btn" onclick="toggleAnimation()">Animate Box</button>
+    <div class="box" id="animatedBox"></div>
+    <button class="btn" onclick="savePreference()">Save Preference</button>
+    <button class="btn" onclick="loadPreference()">Load Preference</button>
+    
+    <script>
+        function toggleAnimation() {
+            let box = document.getElementById("animatedBox");
+            box.classList.toggle("show");
+        }
+
+        function savePreference() {
+            localStorage.setItem("boxVisible", document.getElementById("animatedBox").classList.contains("show"));
+            alert("Preference Saved!");
+        }
+
+        function loadPreference() {
+            let isVisible = localStorage.getItem("boxVisible") === "true";
+            let box = document.getElementById("animatedBox");
+            if (isVisible) {
+                box.classList.add("show");
+            } else {
+                box.classList.remove("show");
+            }
+            alert("Preference Loaded!");
+        }
+    </script>
+</body>
+</html>
